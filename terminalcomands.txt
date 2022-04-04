@@ -1,0 +1,77 @@
+Important Terminal Commands
+
+docker build -t <name> .   # for building docker image
+
+docker build -t pg_new --build-arg MFISH_ENV=production --cache-from "postgres:12.3" .   # for building docker image by passing arguments and cache
+
+docker images    # for viewing running images
+ 
+docker rm image <name or id  of the image> # for removing images
+
+docker run -itd --env-file ./env.list -v /var/lib/postgresql/data:/var/lib/postgresql/data pg_new # for running the docker image
+
+docker logs <id> # for checking logs
+
+docker ps    # for viewing the running containers 
+
+docker exec -it <container_id> bash or /bin/sh or //bin//sh or bin/sh  # to check whether the application is running locally
+
+docker image save  <image name> -o <image name .tar.gz>
+
+scp -rv pg_new.tar.gz  ubuntu@ip-172-31-23-185:   # copying image to worker node
+
+mv # for renaming
+
+sudo docker load < image_name.tar.gz  #for running the image of worker node (this has to be done on worker node>
+
+kubectl apply -f pod.yaml
+
+kubectl get pods
+
+kubectl logs -f <name>
+
+kubectl describe pod <name>
+
+kubectl expose pod <name> --port 5432 --type NodePort   #for exposing 
+
+kubectl get service  # for seeing the services
+
+psql -U postgres -p 30460 -h ip-172-31-10-247   # to login into postgres
+
+ cp -rv pod.yaml YAML/postgres.yaml  #for copying files in directories
+
+kubectl exec -it <name> bin/sh  #to check whether the application is running locally
+
+kompose -f docker-compose.yml convert #for converting docker compose to kubernetes executable Yaml’s 
+
+service ufw stop #for disabling firewall on ubuntu
+
+kubectl get storageclasses.storage.k8s.io #for getting info about storages
+
+kubectl get statefulset #for getting statefulsets
+
+kubectl get pv #for getting persistent volume
+
+kubect get pvc  #for getting persistent volume claim
+
+ku get ServiceAccount -n kube-system
+
+ku get ClusterRole -n kube-system
+
+ku get ClusterRoleBinding -n kube-system
+
+ku get Configmap -n kube-system
+
+ku get Daemonset -n kube-system
+
+ku api-resources
+
+ku get service
+
+ku get deployment
+
+ku get pods
+ 
+kubectl delete pod <PODNAME> --grace-period=0 --force --namespace <NAMESPACE>
+
+ansible-playbook -i inventory.cfg <playbook.yaml>
